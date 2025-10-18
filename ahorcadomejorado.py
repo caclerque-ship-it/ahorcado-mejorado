@@ -6,7 +6,6 @@ Autor: Cristian Clerque
 Descripción:
 Versión mejorada del clásico "Ahorcado" con sistema de puntuación, dificultad,
 pistas, historial y estadísticas.
-Fecha: 18/10/25
 """
 
 import random
@@ -142,7 +141,7 @@ def choose_word(words, difficulty: str) -> str:
     return random.choice(filtered) if filtered else random.choice(words)
 
 def display_state(secret, guessed, errors, max_errors, score):
-    print(HANGMAN_STAGES[errors])
+    print(HANGMAN_STAGES[min(errors, len(HANGMAN_STAGES)-1)])
     print("Palabra: ", " ".join([ch if ch in guessed else "_" for ch in secret]))
     print(f"Letras: {' '.join(sorted(guessed)) or '---'}")
     print(f"Errores: {errors}/{max_errors}")
